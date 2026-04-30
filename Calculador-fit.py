@@ -1,108 +1,112 @@
-seu_peso = float(input("Digite seu peso (EX = 82.7): "))
-sua_altura = float(input("Digite sua altura (EX = 1.60): "))
+print("Welcome to our fitness calculator, check the |MENU| options and make your choice. But first, tell me this information.")
+
+seu_peso = float(input("Enter your weight (EX = 82.7): "))
+sua_altura = float(input("Enter your height (EX = 1.60): "))
+meta_diaria = float(input("Enter your daily exercise time goal: "))
 
 #MENU
 while True:
-    print("1- O valor do seu IMC")
-    print("2- Quanto de água você deve beber diáriamente")
-    print("3- Estimativa de gasto calórico de atividades físicas")
-    print("4- Se sua meta diária de exercícios foi concluida")
-    print("5- Apresentar resumo diário de tudo")
-    print("6- Finalizar programa")
+    print("|MENU|")
+    print("1- Your BMI value")
+    print("2- How much water you should drink daily")
+    print("3- Estimated calorie burn from physical activities")
+    print("4- Check if your daily exercise goal was completed")
+    print("5- Show full daily summary")
+    print("6- Exit program")
 
-    opcoes = int(input("Digite a opção desejada: "))
-    #calculo de IMC
+    opcoes = int(input("Enter the desired option: "))
+    # BMI calculation
     if opcoes == 1:
         calculo_de_imc = seu_peso / (sua_altura * sua_altura)
-        print(f"O seu IMC é {calculo_de_imc: .2f}")
+        if calculo_de_imc < 18.5:
+            print(f"Your BMI is {calculo_de_imc: .2f}", " you are underweight.")
+        elif calculo_de_imc >= 18.5 and calculo_de_imc <= 24.9:
+            print(f"Your BMI is {calculo_de_imc: .2f}", " you are at an ideal weight.")
+        elif calculo_de_imc >= 25 and calculo_de_imc <= 29.9:
+            print(f"Your BMI is {calculo_de_imc: .2f}",  " you are overweight")
+        elif calculo_de_imc >= 30 and calculo_de_imc <= 34.9:
+            print(f"Your BMI is {calculo_de_imc: .2f}", " you have obesity")
+        elif calculo_de_imc > 35:
+            print(f"Your BMI is {calculo_de_imc: .2f}", " you have severe obesity")
 
-    #meta diaria de hidrataçao
+    # daily hydration goal
     elif opcoes == 2:
         calculo_de_hidra = seu_peso * 35
-        print("Beber ", calculo_de_hidra, "ml")
+        print("Drink ", calculo_de_hidra, "ml")
 
-
-    #estimativa de gasto calorico de  ativi. fisica -met(intensidade de atividade)
+    # estimated calorie burn from physical activity (MET)
     elif opcoes == 3:
-        print("Esses são os valores de intensidade média de cada atividade física")
-        print("1- Descanso")
-        print("2- Caminhada")
-        print("3- Caminhada rapida")
-        print("7- Esportes")
-        print("10- Corrida")
-        met = int(input("Digite o valor de intensidade da sua atividade: "))
+        print("These are the average intensity values for each physical activity")
+        print("1- Rest")
+        print("2- Walking")
+        print("3- Fast walking")
+        print("7- Sports")
+        print("10- Running")
+        met = int(input("Enter the intensity value of your activity: "))
 
         while met > 0:
             if met == 1 or met == 2 or met == 3 or met == 7 or met == 10:
-                tempo_em_horas = int(input("Digite por quanto tempo você irá praticar a atividade em horas: "))
-                tempo_em_min = int(input("Digite os minutos que você praticou: "))
+                tempo_em_horas = int(input("Enter how many hours you practiced the activity: "))
+                tempo_em_min = int(input("Enter the minutes you practiced: "))
                 tempo_para_calculo = tempo_em_min/60 + tempo_em_horas
                 calculo_gasto_atividade = met * seu_peso * tempo_para_calculo
-                print("Estimativa de gasto calórico ", f"{calculo_gasto_atividade: .2f}", " kcal")
+                print("Estimated calorie burn ", f"{calculo_gasto_atividade: .2f}", " kcal")
                 break
             else:
-                print("Comando inválido, digite novamente")
-            met = int(input("Digite o valor de intensidade da sua atividade: "))
+                print("Invalid input, try again")
+            met = int(input("Enter the intensity value of your activity: "))
 
-
-
-
-    #meta diaria de exercicios(tempo)
+    # daily exercise goal (time)
     elif opcoes == 4:
-        meta_diaria = float(input("Digite a meta diária de tempo de exercícios: "))
-        tempo_feito = float(input("Digite o tempo que voce praticou o exercício: "))
+        tempo_feito = float(input("Enter the time you exercised: "))
         calculo_de_meta = tempo_feito - meta_diaria
         if calculo_de_meta < 0:
-            print("Você não concluiu sua meta diária")
-
+            print("You did not complete your daily goal")
         else:
-            print("Você concluiu sua meta diária")
+            print("You completed your daily goal")
 
-
-    #seu resumo diario
+    # daily summary
     elif opcoes == 5:
-        #opção 1
+        # option 1
         calculo_de_imc = seu_peso / (sua_altura * sua_altura)
 
-        #opção 2
+        # option 2
         calculo_de_hidra = seu_peso * 35
 
-        #opção 3
-        print("Para que possa lhe dar o resumo de tudo preciso das seguintes informações")
-        print("Esses são os valores de intensidade média de cada atividade física")
-        print("1- Descanso")
-        print("2- Caminhada")
-        print("3- Caminhada rapida")
-        print("7- Esportes")
-        print("10- Corrida")
-        met = int(input("Digite o valor de intensidade da sua atividade: "))
+        # option 3
+        print("To provide your full summary, I need the following information")
+        print("These are the average intensity values for each physical activity, enter the number of the one you practiced.")
+        print("1- Rest")
+        print("2- Walking")
+        print("3- Fast walking")
+        print("7- Sports")
+        print("10- Running")
+        met = int(input("Enter the intensity value of your activity: "))
 
         while met > 0 or met < 0 or met == 0:
             if met == 1 or met == 2 or met == 3 or met == 7 or met == 10:
-                tempo_em_horas = int(input("Digite por quanto tempo você irá praticar a atividade em horas: "))
-                tempo_em_min = int(input("Digite os minutos que você praticou: "))
+                tempo_em_horas = int(input("Enter how many hours you practiced the activity: "))
+                tempo_em_min = int(input("Enter the minutes you practiced: "))
                 tempo_para_calculo = tempo_em_min/60 + tempo_em_horas
                 calculo_gasto_atividade = met * seu_peso * tempo_para_calculo
                 break
             else:
-                print("Comando inválido, digite novamente")
-            met = int(input("Digite o valor de intensidade da sua atividade: "))
+                print("Invalid input, try again")
+            met = int(input("Enter the intensity value of your activity: "))
 
-        #opção 4
-        meta_diaria = float(input("Digite a meta diária de tempo de exercícios: "))
-        tempo_feito = float(input("Digite o tempo que voce praticou o exercício: "))
+        # option 4
+        tempo_feito = float(input("Enter the time you exercised: "))
         calculo_de_meta = tempo_feito - meta_diaria
 
-        print(f"o seu IMC é {calculo_de_imc: .2f}", "e você deve beber diáriamente ", calculo_de_hidra, "ml, e seu gasto de calorias em atividaes físicas é ", f"{calculo_gasto_atividade: .2f}", " kcal")
+        print(f"Your BMI is {calculo_de_imc: .2f}", "and you should drink daily ", calculo_de_hidra, "ml, and your calorie burn from activities is ", f"{calculo_gasto_atividade: .2f}", " kcal")
         if calculo_de_meta < 0:
-            print("Você não concluiu sua meta diária")
-
+            print("You did not complete your daily goal")
         else:
-            print("Você concluiu sua meta diária")
+            print("You completed your daily goal")
 
-    #opcao 6
+    # option 6
     elif opcoes == 6:
-        print("Finalizando programa...")
+        print("Ending program...")
         break
     else:
-        print("Resposta inválida, digite novamente.")
+        print("Invalid response, try again.")
